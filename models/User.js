@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('User',{
+    const User = sequelize.define('User', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
 
         },
-        avatar:{
+        avatar: {
             type: DataTypes.STRING,
             allowNull: true,
 
@@ -30,9 +30,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         updatedAt: {
             type: DataTypes.DATE,
-            field: 'created_at'
+            field: 'updated_at'
         }
-    },{
+    }, {
         tableName: 'users',
         timestamps: true
     });

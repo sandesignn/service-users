@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const Validator = require('fastest-validator');
 const v = new Validator();
 
-module.exports = async (req, res) =>{
+module.exports = async (req, res) => {
     const schema = {
         name: 'string|empty:false',
         email: 'email|empty:false',
@@ -11,7 +11,7 @@ module.exports = async (req, res) =>{
     }
     const validate = v.validate(req.body, schema);
 
-    if(validate.length){
+    if (validate.length) {
         return res.status(400).json({
             status: 'error',
             message: validate
@@ -19,10 +19,10 @@ module.exports = async (req, res) =>{
     }
 
     const user = await User.findOne({
-        where: {email : req.body.email}
+        where: { email: req.body.email }
     });
 
-    if(user){
+    if (user) {
         return res.status(409).json({
             status: 'error',
             message: 'email already exist'
@@ -34,9 +34,7 @@ module.exports = async (req, res) =>{
     const data = {
         password,
         name: req.body.name,
-        email: req.body.email,
-        profession: req.body.profession,
-        role: 'student'
+        email: req.body.email
     }
 
     const createdUser = await User.create(data);
